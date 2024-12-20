@@ -59,6 +59,34 @@ else {        std::cout << "I nodi " << nodo1 << " e " << nodo2 << " NON sono co
 
  std:: cout << "\n trova arco con peso minimo uscendo da 'Dybala':\n ";
    grafo.arcoMinimo("Dybala");
+
+    
+    int grafo[5][6];
+    int numeroNodi = 5;
+
+    // Inizializza il grafo con INF
+    for (int i = 0; i < numeroNodi; i++) {
+        for (int j = 0; j < numeroNodi; j++) {
+            if (i == j) {
+                grafo[i][j] = 0;
+            } else {
+                grafo[i][j] = INF;
+            }
+        }
+    }
+
+    // Aggiungi archi con pesi
+    grafo[0][1] = 10; // Arco da 0 a 1 con peso 10
+    grafo[0][2] = 5; // Arco da 0 a 2 con peso 5
+    grafo[1][3] = 20; // Arco da 1 a 3 con peso 20
+    grafo[2][4] = 15; // Arco da 2 a 3 con peso 15
+    grafo[0][2] = 8; // Arco da 2 a 3 con peso 8
+    grafo[3][4] = 12; // Arco da 2 a 3 con peso 12
+    // Calcola i cammini minimi dal nodo sorgente 0
+    dijkstra(grafo, numeroNodi, 0);
+
+    return 0;
+}
     return 0;
 }
 
