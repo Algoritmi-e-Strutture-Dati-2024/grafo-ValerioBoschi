@@ -21,7 +21,31 @@ public:
             matriceAdiacenza[i][i] = 0; // La distanza da un nodo a se stesso è 0
         }
     }
+// Trova l'arco con peso minimo tra gli archi uscenti di un nodo dato
+void arcoMinimo(const T& nodo) const {
+    int indice = trovaIndice(nodo);
+    if (indice == -1) {
+        std::cout << "Errore: il nodo non esiste.\n";
+        return;
+    }
 
+    int pesoMinimo = INF;
+    int nodoDestinazione = -1;
+
+    for (int i = 0; i < numeroNodi; ++i) {
+        if (esisteNodo[i] && matriceAdiacenza[indice][i] < pesoMinimo) {
+            pesoMinimo = matriceAdiacenza[indice][i];
+            nodoDestinazione = i;
+        }
+    }
+
+    if (nodoDestinazione != -1) {
+        std::cout << "L'arco con peso minimo uscendo da " << nodo << " è verso " 
+                  << nodi[nodoDestinazione] << " con peso " << pesoMinimo << ".\n";
+    } else {
+        std::cout << "Il nodo " << nodo << " non ha archi uscenti.\n";
+    }
+}
     // Aggiunge un nodo al grafo, in input viene inserito il valore che rappresenta quel nodo (es. nome della cittá)
     void aggiungiNodo(const T& nodo) {
         if (numeroNodi >= MAX_NODI) {
